@@ -4,40 +4,31 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import com.motafelipe.api.backoffice.domains.vo.entities.RoomEntity;
+import com.motafelipe.api.backoffice.dto.request.RoomRequestDto;
 import lombok.*;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class RoomResponseDto {
+public class RoomResponseDto extends RoomRequestDto {
 
     @JsonProperty("id_room")
     private Long idRoom;
 
-    @NotBlank(message = "room number is required")
-    @NotEmpty(message = "room number is required")
-    @NotNull(message = "room number is required")
-    private Long number;
-
-    @Builder.Default
-    @JsonProperty("is_activated")
-    private boolean isActivated = false;
-
+    public RoomResponseDto(Long idRoom, Long number, boolean activated) {
+        super(number,activated);
+        this.idRoom = idRoom;
+    }
 
     public RoomEntity toEntity () {
         return new RoomEntity(
-            null, this.number, this.isActivated
+            this.idRoom, this.getNumber(), this.isActivated()
         );
     }
 
     public RoomResponseDto toDto(RoomEntity roomEntity){
-        return new RoomResponseDto(roomEntity.getIdRoom(), roomEntity.getIdRoom(), roomEntity.isActivated());
+        return new RoomResponseDto(roomEntity.getIdRoom(), roomEntity.getNumber(), roomEntity.isActivated());
     }
 }

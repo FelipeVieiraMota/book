@@ -24,8 +24,12 @@ public class RoomService {
         this.roomRepository = roomRepository;
     }
 
-
-    public RoomResponseDto save (RoomResponseDto RoomResponseDto){
+    /**
+     * createNewRoom
+     * @param RoomResponseDto - Room dto object.
+     * @return - RoomResponseDto
+     */
+    public RoomResponseDto createNewRoom (RoomResponseDto RoomResponseDto){
 
         var data = Optional.of(roomRepository.save(RoomResponseDto.toEntity()));
 
@@ -41,50 +45,64 @@ public class RoomService {
     }
 
     /**
+     * updateRoom
      * @param RoomResponseDto - Room dto object.
      * @return RoomResponseDto
      */
-    public RoomResponseDto update(RoomResponseDto RoomResponseDto){
+    public RoomResponseDto updateRoom(RoomResponseDto RoomResponseDto){
 
         var result =
-                this.roomRepository
-                        .getRoomByIdRoom(RoomResponseDto.getIdRoom())
-                        .map(
-                            resource -> {
-                                resource.setNumber(RoomResponseDto.getNumber() == null ? resource.getNumber() : RoomResponseDto.getNumber());
-                                resource.setActivated(RoomResponseDto.isActivated());
-                                return this.roomRepository.save(resource);
-                            }
-                        )
-                        .orElseThrow(
-                            () ->
-                            new HttpServerErrorException(
-                                HttpStatus.INTERNAL_SERVER_ERROR,
-                                " We cannot to save room number : " + RoomResponseDto.getNumber() +
-                                " in our database, please try it again in a few moment."
-                            )
-                        );
+            this.roomRepository
+                .getRoomByIdRoom(RoomResponseDto.getIdRoom())
+                .map(
+                    resource -> {
+                        resource.setNumber(RoomResponseDto.getNumber() == null ? resource.getNumber() : RoomResponseDto.getNumber());
+                        resource.setActivated(RoomResponseDto.isActivated());
+                        return this.roomRepository.save(resource);
+                    }
+                )
+                .orElseThrow(
+                    () ->
+                    new HttpServerErrorException(
+                        HttpStatus.INTERNAL_SERVER_ERROR,
+                        " We cannot to save room number : " + RoomResponseDto.getNumber() +
+                        " in our database, please try it again in a few moment."
+                    )
+                );
 
         return RoomResponseDto.toDto(result);
     }
 
-
-    public void deleteById(Long idUser){
+    /**
+     * deleteRoomById
+     * @param idUser - idUser
+     */
+    public void deleteRoomById(Long idUser){
         this.roomRepository.deleteById(idUser);
     }
 
-    public RoomResponseDto getById(Long idUser){
+    /**
+     *
+     * @param idRoom - idRoom
+     * @return - RoomResponseDto
+     */
+    public RoomResponseDto getById(Long idRoom){
 
-        var data =  this.roomRepository.getRoomByIdRoom(idUser);
+        var data =  this.roomRepository.getRoomByIdRoom(idRoom);
 
         data.orElseThrow(
-            () -> new NotFoundException("There are not room with id = " + idUser)
+            () -> new NotFoundException("There are not room with id = " + idRoom)
         );
 
         return new RoomResponseDto().toDto(data.get());
     }
 
-    public PageResponseDto<RoomResponseDto> getPagination (PageRequestDto pr) {
+    /**
+     * getAllRooms
+     * @param pr - pr
+     * @return - PageResponseDto<RoomResponseDto>
+     */
+    public PageResponseDto<RoomResponseDto> getAllRooms (PageRequestDto pr) {
         return RoomModel.entityPageToPageModel(this.roomRepository.findAll(PageRequest.of(pr.getPage(), pr.getSize())));
     }
 }

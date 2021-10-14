@@ -9,15 +9,5 @@ Ssrc/main/java/com/motafelipe/api/backoffice/domains/vo/entities/CustomerEntity.
 Lsrc/main/java/com/motafelipe/api/backoffice/repositories/RoomRepository.java,c/d/cd563649ece1400cdc90d772b113d2ec32392bef
 €
 Psrc/main/java/com/motafelipe/api/backoffice/repositories/CustomerRepository.java,6/1/61c9b213101e9e73bf70d5a24e8914deb0052f6d
-
-Osrc/main/java/com/motafelipe/api/backoffice/domains/vo/entities/BookEntity.java,5/6/56a5fcd0ec39382480e208ea8f30ff865486b8d4
-|
-Lsrc/main/java/com/motafelipe/api/backoffice/repositories/BookRepository.java,3/7/3709bc526f1ad4cfe43704144b55deee12bb3e54
 u
 Esrc/main/java/com/motafelipe/api/backoffice/models/EnvelopedData.java,7/f/7fc09b2d59bf14ee7c877dfc9949a8ddef2dba52
-u
-Esrc/main/java/com/motafelipe/api/backoffice/services/BookService.java,5/2/526c5a36df8755369a8e992fa07455804e3b5ca0
-y
-Isrc/main/java/com/motafelipe/api/backoffice/services/CustomerService.java,7/e/7e2c951cc359c60dd58e873e2093ad02f8745e34
-u
-Esrc/main/java/com/motafelipe/api/backoffice/services/RoomService.java,f/2/f2fa03547f1a601cdfa1b229fcf819be4e9587a1
