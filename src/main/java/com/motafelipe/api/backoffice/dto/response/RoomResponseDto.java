@@ -10,7 +10,7 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@Builder
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RoomResponseDto extends RoomRequestDto {
 
