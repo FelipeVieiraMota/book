@@ -7,7 +7,7 @@ public interface BasicInterface <TResponse, TRequest>{
 
     TResponse save(TRequest tRequest);
 
-    TResponse update(TResponse tResponse);
+    TResponse update(Long id, TRequest tResponse);
 
     void delete(Long id);
 

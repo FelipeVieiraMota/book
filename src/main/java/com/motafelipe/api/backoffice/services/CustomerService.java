@@ -4,9 +4,11 @@ import com.motafelipe.api.backoffice.dto.request.CustomerRequestDto;
 import com.motafelipe.api.backoffice.dto.request.PageRequestDto;
 import com.motafelipe.api.backoffice.dto.response.CustomerResponseDto;
 import com.motafelipe.api.backoffice.dto.response.PageResponseDto;
+import com.motafelipe.api.backoffice.models.CustomerModel;
 import com.motafelipe.api.backoffice.repositories.CustomerRepository;
 import com.motafelipe.api.backoffice.services.interfaces.BasicInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,7 +27,7 @@ public class CustomerService implements BasicInterface<CustomerResponseDto, Cust
     }
 
     @Override
-    public CustomerResponseDto update(CustomerResponseDto customerResponseDto) {
+    public CustomerResponseDto update(Long id, CustomerRequestDto tResponse) {
         return null;
     }
 
@@ -36,7 +38,7 @@ public class CustomerService implements BasicInterface<CustomerResponseDto, Cust
 
     @Override
     public PageResponseDto<CustomerResponseDto> getPaginated(PageRequestDto pr) {
-        return null;
+        return new CustomerModel().entityPageToPageModel(this.customerRepository.findAll(PageRequest.of(pr.getPage(), pr.getSize())));
     }
 
     @Override

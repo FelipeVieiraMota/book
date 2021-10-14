@@ -25,7 +25,7 @@ public class BookService implements BasicInterface <BookResponseDto, BookRequest
     }
 
     @Override
-    public BookResponseDto update(BookResponseDto bookResponseDto) {
+    public BookResponseDto update(Long id, BookRequestDto tResponse) {
         return null;
     }
 

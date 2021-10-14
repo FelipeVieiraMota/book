@@ -1,8 +1,6 @@
 package com.motafelipe.api.backoffice.services;
 
-import com.motafelipe.api.backoffice.dto.request.BookRequestDto;
 import com.motafelipe.api.backoffice.dto.request.RoomRequestDto;
-import com.motafelipe.api.backoffice.dto.response.BookResponseDto;
 import com.motafelipe.api.backoffice.dto.response.RoomResponseDto;
 import com.motafelipe.api.backoffice.exception.NotFoundException;
 import com.motafelipe.api.backoffice.models.RoomModel;
@@ -44,14 +42,17 @@ public class RoomService implements BasicInterface<RoomResponseDto, RoomRequestD
     }
 
     @Override
-    public RoomResponseDto update(RoomResponseDto roomResponseDto) {
-        var result =
+    public RoomResponseDto update(Long id, RoomRequestDto roomRequestDto) {
+
+        var request = new RoomResponseDto(id, roomRequestDto);
+
+        var entity =
         this.roomRepository
-            .getRoomByIdRoom(roomResponseDto.getIdRoom())
+            .getRoomByIdRoom(request.getIdRoom())
             .map(
                 resource -> {
-                    resource.setNumber(roomResponseDto.getNumber() == null ? resource.getNumber() : roomResponseDto.getNumber());
-                    resource.setActivated(roomResponseDto.isActivated());
+                    resource.setNumber(request.getNumber() == null ? resource.getNumber() : request.getNumber());
+                    resource.setActivated(request.isActivated());
                     return this.roomRepository.save(resource);
                 }
             )
@@ -59,12 +60,12 @@ public class RoomService implements BasicInterface<RoomResponseDto, RoomRequestD
                 () ->
                 new HttpServerErrorException(
                     HttpStatus.INTERNAL_SERVER_ERROR,
-                    " We cannot to save room number : " + roomResponseDto.getNumber() +
+                    " We cannot to save room number : " + roomRequestDto.getNumber() +
                             " in our database, please try it again in a few moment."
                 )
             );
 
-        return new RoomResponseDto().toDto(result);
+        return request.toDto(entity);
     }
 
     @Override

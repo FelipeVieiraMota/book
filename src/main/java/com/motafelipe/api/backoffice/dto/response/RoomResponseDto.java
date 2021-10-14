@@ -17,8 +17,13 @@ public class RoomResponseDto extends RoomRequestDto {
     @JsonProperty("id_room")
     private Long idRoom;
 
+    public RoomResponseDto(Long idRoom, RoomRequestDto roomRequestDto) {
+        super(roomRequestDto.getNumber(),roomRequestDto.isActivated());
+        this.idRoom = idRoom;
+    }
+
     public RoomResponseDto(Long idRoom, Long number, boolean activated) {
-        super(number,activated);
+        super(number, activated);
         this.idRoom = idRoom;
     }
 
