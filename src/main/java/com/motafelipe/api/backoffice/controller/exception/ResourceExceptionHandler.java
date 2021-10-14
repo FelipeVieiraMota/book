@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.orm.jpa.JpaSystemException;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -74,17 +73,6 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<ApiError> handleAccessDeniedException(AccessDeniedException ex){
         ApiError error = new ApiError(HttpStatus.FORBIDDEN.value(), ex.getMessage(), getFormattedDateTime());
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
-    }
-
-    /**
-     * Created to handle BadCredentialsException ( HTTP status code 401 ) throws.
-     * @param ex - ex
-     * @return ResponseEntity<ApiError>
-     */
-    @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<ApiError> handleBadCredentialsException(BadCredentialsException ex){
-        ApiError error = new ApiError(HttpStatus.UNAUTHORIZED.value(), ex.getMessage(), getFormattedDateTime());
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
     }
 
     /**

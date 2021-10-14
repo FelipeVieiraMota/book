@@ -1,0 +1,9 @@
+
+Q
+java:S2201 "/The return value of "orElseThrow" must be used.(½«†üùÿÿÿÿ8ËäßçÇ/
+Q
+java:S2201P"/The return value of "orElseThrow" must be used.(½«†üùÿÿÿÿ8àäßçÇ/
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†ÕŞ¹øÿÿÿÿ
+k	java:S117/"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿ†ü…ÿÿÿÿÿ
+e
+java:S3655T"HCall "data.isPresent()" or "!data.isEmpty()" before accessing the value.(è¾¯¤8„åßçÇ/
