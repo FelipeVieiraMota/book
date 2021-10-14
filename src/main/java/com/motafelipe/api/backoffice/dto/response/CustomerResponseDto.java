@@ -3,6 +3,7 @@ package com.motafelipe.api.backoffice.dto.response;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.motafelipe.api.backoffice.domains.vo.entities.CustomerEntity;
+import com.motafelipe.api.backoffice.dto.request.CustomerRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,41 +18,38 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CustomerResponseDto {
+public class CustomerResponseDto extends CustomerRequestDto {
 
     @JsonProperty("id_customer")
     private Long idCustomer;
 
-    @NotBlank(message = "First Name required")
-    @JsonProperty("first_name")
-    private String firstName;
+    public CustomerResponseDto(
+            Long idCustomer,
+            String firstName,
+            String lastName,
+            String email,
+            String cellphone,
+            Date dateOfBirth) {
 
-    @NotBlank(message = "Last Name required")
-    @JsonProperty("last_name")
-    private String lastName;
+        super(
+            firstName,
+            lastName,
+            email,
+            cellphone,
+            dateOfBirth);
 
-    @Email(message = "Invalid e-mail address")
-    private String email;
+        this.idCustomer = idCustomer;
+    }
 
-    @JsonProperty(value = "cellphone")
-    public String cellphone;
-
-
-    @JsonProperty(value = "date_of_birth")
-    @DateTimeFormat
-    @NotNull(message = " Must need have a valid date field. ")
-    @NotEmpty(message = " Must need have a valid date field. ")
-    @NotBlank(message = " Must need have a valid date field. ")
-    public Date dateOfBirth;
 
     public CustomerEntity toEntity () {
         return new CustomerEntity(
-            null,
-            this.firstName,
-            this.lastName,
-            this.email,
-            this.cellphone,
-            this.dateOfBirth
+            this.idCustomer,
+            this.getFirstName(),
+            this.getLastName(),
+            this.getEmail(),
+            this.getEmail(),
+            this.getDateOfBirth()
         );
     }
 

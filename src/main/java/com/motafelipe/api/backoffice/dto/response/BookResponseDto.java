@@ -4,6 +4,7 @@ package com.motafelipe.api.backoffice.dto.response;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.motafelipe.api.backoffice.domains.vo.entities.BookEntity;
+import com.motafelipe.api.backoffice.dto.request.BookRequestDto;
 import lombok.*;
 
 import java.util.Date;
@@ -14,38 +15,51 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class BookResponseDto {
+public class BookResponseDto extends BookRequestDto {
 
     @JsonProperty("id_room")
     private Long idBook;
 
-    @JsonProperty("customer")
-    private CustomerResponseDto customerResponseDto;
+    /**
+     * Constructor
+     * @param idBook - idBook
+     * @param customer - customer
+     * @param room - room
+     * @param startDate - startDate
+     * @param finishDate - finishDate
+     * @param occupied - occupied
+     * @param description - description
+     */
+    public BookResponseDto(
+            Long idBook,
+            CustomerResponseDto customer,
+            RoomResponseDto room,
+            Date startDate,
+            Date finishDate,
+            boolean occupied,
+            String description) {
+        super(
+            customer,
+            room,
+            startDate,
+            finishDate,
+            occupied,
+            description
+        );
 
-    @JsonProperty("room")
-    private RoomResponseDto roomResponseDto;
-
-    @JsonProperty("start_date")
-    private Date startDate;
-
-    @JsonProperty("finish_date")
-    private Date finishDate;
-
-    @JsonProperty("is_occupied")
-    private boolean isOccupied;
-
-    private String description;
+        this.idBook = idBook;
+    }
 
     public BookEntity toEntity () {
 
         return new BookEntity(
                 this.idBook,
-                this.customerResponseDto.toEntity(),
-                this.roomResponseDto.toEntity(),
-                this.startDate,
-                this.finishDate,
-                this.isOccupied,
-                this.description
+                this.getCustomerResponseDto().toEntity(),
+                this.getRoomResponseDto().toEntity(),
+                this.getStartDate(),
+                this.getFinishDate(),
+                this.isOccupied(),
+                this.getDescription()
         );
     }
 
