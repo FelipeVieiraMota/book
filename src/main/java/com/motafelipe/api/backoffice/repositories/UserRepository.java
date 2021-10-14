@@ -13,13 +13,5 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity,Long> {
 
-    @Query(" select u from tb_user u where email = ?1 and password = ?2 ")
-    Optional<UserEntity> login (String email, String password);
-
-    @Transactional(readOnly = false)
-    @Modifying
-    @Query(" update tb_user set role = ?2 where id_student = ?1 ")
-    int updateRole(Long id, Role role);
-
     Optional<UserEntity> findByEmail(String email);
 }

@@ -18,7 +18,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity(name="tb_user")
+@Entity(name="tb_users")
 public class UserEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

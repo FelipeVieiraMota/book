@@ -39,12 +39,6 @@ public class UserService implements UserDetailsService {
         return userRepository.save(user);
     }
 
-    public UserEntity update(UserEntity user){
-        String hash = HashUtil.getSecureHash(user.getPassword());
-        user.setPassword(hash);
-        return userRepository.save(user);
-    }
-
     public UserEntity getById(Long id){
         Optional<UserEntity> result = userRepository.findById(id);
         return result.orElseThrow(
@@ -52,27 +46,10 @@ public class UserService implements UserDetailsService {
         );
     }
 
-    public List<UserEntity> listAll(){
-        return userRepository.findAll();
-    }
-
-    public PageModel<UserEntity> listAllOnLazyMode (PageRequestModel pr) {
+    public PageModel<UserEntity> getAllUsers (PageRequestModel pr) {
         Pageable pageable = PageRequest.of(pr.getPage(), pr.getSize());
         Page<UserEntity> page = userRepository.findAll(pageable);
         return new PageModel<>((int)page.getTotalElements(), page.getSize(), page.getTotalPages(), page.getContent());
-    }
-
-    public UserEntity login(String email, String password){
-        password = HashUtil.getSecureHash(password);
-        Optional<UserEntity> result = userRepository.login(email, password);
-        result.orElseThrow(
-            () -> new NotFoundException("There anre not user with email = "+ email)
-        );
-        return result.get();
-    }
-
-    public int updateRole(UserEntity user){
-        return userRepository.updateRole(user.getIdUser(), user.getRole());
     }
 
     @Override

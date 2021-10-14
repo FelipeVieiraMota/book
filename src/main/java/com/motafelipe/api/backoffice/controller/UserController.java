@@ -34,7 +34,7 @@ public class UserController {
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "10") int size) {
         PageRequestModel pr = new PageRequestModel(page, size);
-        PageModel<UserEntity> pm = userService.listAllOnLazyMode(pr);
+        PageModel<UserEntity> pm = userService.getAllUsers(pr);
         return ResponseEntity.ok(pm);
     }
 
