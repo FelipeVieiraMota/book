@@ -1,4 +1,4 @@
-package com.motafelipe.api.backoffice.models.pagination;
+package com.motafelipe.api.backoffice.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
-public class PageModel <T> implements Serializable {
+public class PageResponseDto<T> implements Serializable {
     private static final long serialVersionUID = 1l;
     private int totalElements;
     private int pageSize;

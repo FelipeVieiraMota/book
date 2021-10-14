@@ -1,6 +1,6 @@
 package com.motafelipe.api.backoffice.services;
 
-import com.motafelipe.api.backoffice.dto.BookDto;
+import com.motafelipe.api.backoffice.dto.response.BookResponseDto;
 import com.motafelipe.api.backoffice.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public BookDto save(BookDto bookDto){
+    public BookResponseDto save(BookResponseDto bookResponseDto){
         return null;
     }
 }

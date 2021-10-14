@@ -1,4 +1,4 @@
-package com.motafelipe.api.backoffice.dto;
+package com.motafelipe.api.backoffice.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class RoomDto {
+public class RoomResponseDto {
 
     @JsonProperty("id_room")
     private Long idRoom;
@@ -37,7 +37,7 @@ public class RoomDto {
         );
     }
 
-    public RoomDto toDto(RoomEntity roomEntity){
-        return new RoomDto(roomEntity.getIdRoom(), roomEntity.getIdRoom(), roomEntity.isActivated());
+    public RoomResponseDto toDto(RoomEntity roomEntity){
+        return new RoomResponseDto(roomEntity.getIdRoom(), roomEntity.getIdRoom(), roomEntity.isActivated());
     }
 }

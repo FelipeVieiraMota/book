@@ -1,4 +1,4 @@
-package com.motafelipe.api.backoffice.dto;
+package com.motafelipe.api.backoffice.dto.response;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -6,9 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.motafelipe.api.backoffice.domains.vo.entities.BookEntity;
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
@@ -16,16 +14,16 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class BookDto {
+public class BookResponseDto {
 
     @JsonProperty("id_room")
     private Long idBook;
 
     @JsonProperty("customer")
-    private CustomerDto customerDto;
+    private CustomerResponseDto customerResponseDto;
 
     @JsonProperty("room")
-    private RoomDto roomDto;
+    private RoomResponseDto roomResponseDto;
 
     @JsonProperty("start_date")
     private Date startDate;
@@ -42,8 +40,8 @@ public class BookDto {
 
         return new BookEntity(
                 this.idBook,
-                this.customerDto.toEntity(),
-                this.roomDto.toEntity(),
+                this.customerResponseDto.toEntity(),
+                this.roomResponseDto.toEntity(),
                 this.startDate,
                 this.finishDate,
                 this.isOccupied,
@@ -51,11 +49,11 @@ public class BookDto {
         );
     }
 
-    public BookDto toDto(BookEntity bookEntity) {
-        return new BookDto(
+    public BookResponseDto toDto(BookEntity bookEntity) {
+        return new BookResponseDto(
                 bookEntity.getIdBook(),
-                new CustomerDto().toDto(bookEntity.getCustomerEntity()),
-                new RoomDto().toDto(bookEntity.getRoomEntity()),
+                new CustomerResponseDto().toDto(bookEntity.getCustomerEntity()),
+                new RoomResponseDto().toDto(bookEntity.getRoomEntity()),
                 bookEntity.getStartDate(),
                 bookEntity.getFinishDate(),
                 bookEntity.isOccupied(),

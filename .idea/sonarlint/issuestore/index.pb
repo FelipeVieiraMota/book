@@ -1,6 +1,4 @@
 
-|
-Lsrc/main/java/com/motafelipe/api/backoffice/models/pagination/PageModel.java,e/a/eaa691425ddacf1eaa7588e1f35d3ae9c4da4a67
 v
 Fsrc/main/java/com/motafelipe/api/backoffice/BackofficeApplication.java,6/e/6e24fe5f431974d5080ae2a6e1c03ebc9bd4cde2
 
@@ -13,20 +11,10 @@ Lsrc/main/java/com/motafelipe/api/backoffice/repositories/RoomRepository.java,c
 Psrc/main/java/com/motafelipe/api/backoffice/repositories/CustomerRepository.java,6/1/61c9b213101e9e73bf70d5a24e8914deb0052f6d
 
 Osrc/main/java/com/motafelipe/api/backoffice/domains/vo/entities/BookEntity.java,5/6/56a5fcd0ec39382480e208ea8f30ff865486b8d4
-q
-Asrc/main/java/com/motafelipe/api/backoffice/models/RoomModel.java,5/e/5ea9cc2b29381153ab185be803c1ae15565cdfde
 |
 Lsrc/main/java/com/motafelipe/api/backoffice/repositories/BookRepository.java,3/7/3709bc526f1ad4cfe43704144b55deee12bb3e54
 u
 Esrc/main/java/com/motafelipe/api/backoffice/models/EnvelopedData.java,7/f/7fc09b2d59bf14ee7c877dfc9949a8ddef2dba52
-q
-Asrc/main/java/com/motafelipe/api/backoffice/models/BookModel.java,e/6/e6476988b643f1c1c5181c669fe4b39f57857885
-l
-<src/main/java/com/motafelipe/api/backoffice/dto/RoomDto.java,e/c/ecf7cba50f60cefa805d4d08068b439838e3d1c8
-p
-@src/main/java/com/motafelipe/api/backoffice/dto/CustomerDto.java,5/e/5ea336c203180a8c3d5a2179eac2307e631eecd7
-l
-<src/main/java/com/motafelipe/api/backoffice/dto/BookDto.java,7/f/7f4cec396a23d17dacd94ac4c9fcc6d5fe7cc877
 u
 Esrc/main/java/com/motafelipe/api/backoffice/services/BookService.java,5/2/526c5a36df8755369a8e992fa07455804e3b5ca0
 y

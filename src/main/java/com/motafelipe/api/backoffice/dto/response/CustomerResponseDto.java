@@ -1,4 +1,4 @@
-package com.motafelipe.api.backoffice.dto;
+package com.motafelipe.api.backoffice.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,7 +17,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CustomerDto {
+public class CustomerResponseDto {
 
     @JsonProperty("id_customer")
     private Long idCustomer;
@@ -55,8 +55,8 @@ public class CustomerDto {
         );
     }
 
-    public CustomerDto toDto(CustomerEntity userEntity){
-        return new CustomerDto(
+    public CustomerResponseDto toDto(CustomerEntity userEntity){
+        return new CustomerResponseDto(
             userEntity.getIdCustomer(),
             userEntity.getFirstName(),
             userEntity.getLastName(),

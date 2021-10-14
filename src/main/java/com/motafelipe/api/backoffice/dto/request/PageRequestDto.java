@@ -1,4 +1,4 @@
-package com.motafelipe.api.backoffice.models.pagination;
+package com.motafelipe.api.backoffice.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,7 +8,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
-public class PageRequestModel {
+public class PageRequestDto {
     private int page;
     private int size;
 }

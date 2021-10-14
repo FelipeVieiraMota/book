@@ -1,4 +1,4 @@
-package com.motafelipe.api.backoffice.models;
+package com.motafelipe.api.backoffice.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
