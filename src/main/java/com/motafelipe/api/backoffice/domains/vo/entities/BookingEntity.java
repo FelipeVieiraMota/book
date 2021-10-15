@@ -4,14 +4,14 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity(name="tb_books")
-public class BookEntity implements Serializable{
+@Entity(name="tb_booking")
+public class BookingEntity implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
@@ -24,17 +24,11 @@ public class BookEntity implements Serializable{
     @JoinColumn(name = "id_customer", nullable = false)
     private CustomerEntity customerEntity;
 
-    @ManyToOne
-    @JoinColumn(name = "id_room", nullable = false)
-    private RoomEntity roomEntity;
-
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "start_date", nullable = false)
-    private Date startDate;
+    private LocalDate startDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "finish_date", nullable = false)
-    private Date finishDate;
+    private LocalDate finishDate;
 
     @Column(name = "is_occupied", nullable = false)
     private boolean isOccupied;

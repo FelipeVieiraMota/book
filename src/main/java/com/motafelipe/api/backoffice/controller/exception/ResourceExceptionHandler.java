@@ -1,5 +1,6 @@
 package com.motafelipe.api.backoffice.controller.exception;
 
+import com.motafelipe.api.backoffice.exception.BadRequestException;
 import com.motafelipe.api.backoffice.exception.NotFoundException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -10,16 +11,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.orm.jpa.JpaSystemException;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.persistence.EntityNotFoundException;
 import java.nio.file.AccessDeniedException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  *  ResourceExceptionHandler handles runtime exceptions in our application and threat the shape of the
@@ -48,6 +48,12 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ApiError> handleBadRequestException(BadRequestException ex){
+        ApiError error = new ApiError(HttpStatus.BAD_REQUEST.value(), ex.getMessage(), getFormattedDateTime());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
     /**
      * Created to handle HttpServerErrorException ( HTTP status code 500 ) throws.
      * @param ex - Expected HttpServerErrorException exception
@@ -63,6 +69,8 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
 
         return ResponseEntity.status(statusCode).body(error);
     }
+
+    //DataAccessResourceFailureException
 
     /**
      * Created to handle AccessDeniedException ( HTTP status code 403 ) throws.
@@ -106,6 +114,13 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<ApiError> handleDataIntegrityViolationException(DataIntegrityViolationException ex){
         ApiError error = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage(), getFormattedDateTime());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ApiError> handleEntityNotFoundException(EntityNotFoundException ex){
+        var message = "Customer not founded. Please, be sure to pass a valid user (id). We cannot keeping with your reservation.";
+        ApiError error = new ApiError(HttpStatus.NOT_FOUND.value(), message, getFormattedDateTime());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 
     /**

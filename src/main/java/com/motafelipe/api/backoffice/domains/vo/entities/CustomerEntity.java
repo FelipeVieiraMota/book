@@ -31,6 +31,11 @@ public class CustomerEntity implements Serializable {
     @Column(length = 100)
     private String email;
 
+    @Getter(onMethod = @__({@JsonIgnore}))
+    @Setter(onMethod = @__({@JsonProperty}))
+    @Column(length = 100, nullable = false)
+    private String password;
+
     @Column(length = 50)
     private String cellphone;
 

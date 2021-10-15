@@ -1,5 +1,6 @@
 package com.motafelipe.api.backoffice.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.motafelipe.api.backoffice.domains.vo.entities.CustomerEntity;
@@ -9,10 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Getter
@@ -20,7 +19,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CustomerRequestDto {
+public class CustomerRequestDto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @NotBlank(message = "First Name required")
     @JsonProperty("first_name")
@@ -32,6 +33,9 @@ public class CustomerRequestDto {
 
     @Email(message = "Invalid e-mail address")
     private String email;
+
+    @Size(min=7, max=99, message = "Password must be between 7 and 99")
+    private String password;
 
     @JsonProperty(value = "cellphone")
     private String cellphone;
@@ -50,6 +54,7 @@ public class CustomerRequestDto {
             this.firstName,
             this.lastName,
             this.email,
+            this.password,
             this.cellphone,
             this.dateOfBirth
         );
@@ -60,6 +65,7 @@ public class CustomerRequestDto {
             userEntity.getFirstName(),
             userEntity.getLastName(),
             userEntity.getEmail(),
+            userEntity.getPassword(),
             userEntity.getCellphone(),
             userEntity.getDateOfBirth()
         );

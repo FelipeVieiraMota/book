@@ -4,16 +4,13 @@ import com.motafelipe.api.backoffice.controller.resources.interfaces.BasicInterf
 import com.motafelipe.api.backoffice.dto.EnvelopedData;
 import com.motafelipe.api.backoffice.dto.request.CustomerRequestDto;
 import com.motafelipe.api.backoffice.dto.request.PageRequestDto;
-import com.motafelipe.api.backoffice.dto.request.RoomRequestDto;
 import com.motafelipe.api.backoffice.dto.response.CustomerResponseDto;
 import com.motafelipe.api.backoffice.dto.response.PageResponseDto;
-import com.motafelipe.api.backoffice.dto.response.RoomResponseDto;
 import com.motafelipe.api.backoffice.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 
 @RestController
@@ -27,6 +24,12 @@ public class CustomerController implements BasicInterface<CustomerResponseDto, C
         this.customerService = customerService;
     }
 
+    /**
+     * getPaginated
+     * @param page - page
+     * @param size - size of page.
+     * @return ResponseEntity<PageResponseDto<CustomerResponseDto>>
+     */
     @GetMapping
     public ResponseEntity<PageResponseDto<CustomerResponseDto>> getPaginated(
             @RequestParam(value = "page", defaultValue = "0") int page,
@@ -36,6 +39,11 @@ public class CustomerController implements BasicInterface<CustomerResponseDto, C
         return ResponseEntity.ok(pm);
     }
 
+    /**
+     * save a new customer
+     * @param customerRequestDto - customerRequestDto
+     * @return - ResponseEntity<EnvelopedData<CustomerResponseDto>>
+     */
     @PostMapping()
     public ResponseEntity<EnvelopedData<CustomerResponseDto>> save (@RequestBody @Valid CustomerRequestDto customerRequestDto){
         var result = this.customerService.save(customerRequestDto);
@@ -43,8 +51,8 @@ public class CustomerController implements BasicInterface<CustomerResponseDto, C
     }
 
     /**
-     * deleteById
-     * @param id - id
+     * delete customer
+     * @param id - id_customer
      * @return void
      */
     @DeleteMapping("/{id}")
@@ -54,8 +62,8 @@ public class CustomerController implements BasicInterface<CustomerResponseDto, C
     }
 
     /**
-     * update
-     * @param id - id
+     * update customer
+     * @param id - id_customer
      * @param customerRequestDto - customerRequestDto
      * @return - ResponseEntity<EnvelopedData<RoomResponseDto>>
      */
@@ -64,6 +72,18 @@ public class CustomerController implements BasicInterface<CustomerResponseDto, C
             @PathVariable(name="id") Long id,
             @RequestBody @Valid CustomerRequestDto customerRequestDto){
         var result = customerService.update(id, customerRequestDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new EnvelopedData<>(result));
+    }
+
+    /**
+     * GetMapping getById
+     * @param id - id_customer
+     * @return - ResponseEntity<EnvelopedData<RoomResponseDto>>
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<EnvelopedData<CustomerResponseDto>> getById(
+            @PathVariable(name="id") Long id){
+        var result = customerService.getById(id);
         return ResponseEntity.status(HttpStatus.CREATED).body(new EnvelopedData<>(result));
     }
 }
