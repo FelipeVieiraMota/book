@@ -78,9 +78,9 @@ echo
 echo "######################################"
 echo "4) Coping jar file from local machine to ec2 instance"
 echo "######################################"
-scp -i "BackOfficeStudents.pem" ~/workspace/Canada/backoffice/target/backoffice-0.0.1-SNAPSHOT.jar ubuntu@ec2-3-87-208-55.compute-1.amazonaws.com:/home/ubuntu/target
+scp -i "BackOfficeStudents.pem" ~/workspace/Canada/book/target/backoffice-0.0.1-SNAPSHOT.jar ubuntu@ec2-3-87-208-55.compute-1.amazonaws.com:/home/ubuntu/target
 echo "Copied jar file from local machine to ec2 instance"
-echo "~/workspace/Canada/backoffice/target/backoffice-0.0.1-SNAPSHOT.jar"
+echo "~/workspace/Canada/book/target/backoffice-0.0.1-SNAPSHOT.jar"
 echo
 echo "# -- END -- #"
 echo
@@ -98,9 +98,9 @@ echo
 echo "######################################"
 echo "5) Coping latest 'Dockerfile' file from local machine to ec2 instance"
 echo "######################################"
-scp -i "BackOfficeStudents.pem" ~/workspace/Canada/backoffice/Dockerfile ubuntu@ec2-3-87-208-55.compute-1.amazonaws.com:/home/ubuntu
+scp -i "BackOfficeStudents.pem" ~/workspace/Canada/book/Dockerfile ubuntu@ec2-3-87-208-55.compute-1.amazonaws.com:/home/ubuntu
 echo "Copied latest 'Dockerfile' file from local machine to ec2 instance"
-echo "~/workspace/Canada/backoffice/Dockerfile"
+echo "~/workspace/Canada/book/Dockerfile"
 echo
 echo "# -- END -- #"
 echo
@@ -118,9 +118,9 @@ echo
 echo "######################################"
 echo "6) Coping latest 'run.sh' file from local machine to ec2 instance"
 echo "######################################"
-scp -i "BackOfficeStudents.pem" ~/workspace/Canada/backoffice/run.sh ubuntu@ec2-3-87-208-55.compute-1.amazonaws.com:/home/ubuntu
+scp -i "BackOfficeStudents.pem" ~/workspace/Canada/book/run.sh ubuntu@ec2-3-87-208-55.compute-1.amazonaws.com:/home/ubuntu
 echo "Copied latest 'run.sh' file from local machine to ec2 instance"
-echo "~/workspace/Canada/backoffice/run.sh"
+echo "~/workspace/Canada/book/run.sh"
 echo
 echo "# -- END -- #"
 echo
