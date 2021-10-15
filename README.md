@@ -89,7 +89,7 @@ You should get a JSON like the following  (For Example):
 
 In case of success, a status code "CREATED" 201 is returned
 
-### Modifying a reservation
+### Updating a reservation
 
 The process is similar to "Placing an specific reservation", but in this case we'll update or resource on the server using PUT Verb
 
