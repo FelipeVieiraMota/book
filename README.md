@@ -1,4 +1,4 @@
-# Backoffice Booking
+# Backoffice Booking AWS
 
 ### Simple API to show CRUD operations through HTTP Verbs POST, GET, DELETE and PUT
 
